@@ -41,6 +41,10 @@ const theme = {
       100: '#0F6FDE',
     },
   },
+  radii: {
+    xs: '6px',
+    sm: '8px',
+  }
 };
 
 export type Theme = typeof theme;

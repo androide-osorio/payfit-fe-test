@@ -69,6 +69,10 @@ export const NavItem = ({ children, ...props }: NavItemProps) => {
       active ? theme.colors.common.white : theme.colors.silver[300]};
     text-decoration: none;
     cursor: pointer;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    height: 2.5rem;
   `;
 
   return (
