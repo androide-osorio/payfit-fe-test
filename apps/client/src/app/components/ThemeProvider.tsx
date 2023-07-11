@@ -1,10 +1,10 @@
 import { ReactNode } from 'react'
-import { DefaultTheme, ThemeProvider as StyledThemeProvider, css } from 'styled-components'
+import { type DefaultTheme, ThemeProvider as StyledThemeProvider, css } from 'styled-components'
 
 /**
  * https://styled-components.com/docs/advanced#theming
  */
-const theme: DefaultTheme = {
+const theme = {
   typography: {
     base: 16,
     styles: {
@@ -43,8 +43,10 @@ const theme: DefaultTheme = {
   },
 };
 
+export type Theme = typeof theme;
+
 export const ThemeProvider = ({ children }: { children: ReactNode }) => (
-  <StyledThemeProvider theme={theme}>
+  <StyledThemeProvider theme={theme as Theme}>
     {children}
   </StyledThemeProvider>
 )

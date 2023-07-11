@@ -1,5 +1,6 @@
 import React, { useContext, useId } from 'react';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
+import { Theme } from '../../../components';
 
 export const Nav = styled('nav')`
   width: 300px;
@@ -63,11 +64,13 @@ export const NavItem = ({ children, ...props }: NavItemProps) => {
   };
 
   const Link = styled('a')<{ active?: boolean }>`
-    ${({theme}) => theme.typography.styles[200]}
-    color: ${({active, theme: {colors}}) => active ? colors.common.white : colors.silver[20]};
+    ${({ theme }) => theme.typography.styles[200]}
+    color: ${({ active, theme }) =>
+      active ? theme.colors.common.white : theme.colors.silver[300]};
     text-decoration: none;
     cursor: pointer;
   `;
+
   return (
     <li>
       <Link {...props} onClick={handleClick} active={activeItem === id}>
