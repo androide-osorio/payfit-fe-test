@@ -1,0 +1,43 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator zod {
+  provider      = "zod-prisma"
+  output        = "../src/schemas/generated" // (default) the directory where generated zod schemas will be saved
+  relationModel = false
+  useDecimalJs  = true // represent the prisma Decimal type using Decimal.js (as Prisma does)
+}
+
+model Company {
+  id          String          @id @default(cuid()) /// @zod.uuid()
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @default(now())
+  name        String /// @zod.min(2, { message: "The name must be longer than 2 characters" })
+  description String /// @zod.min(10, { message: "The description must be longer than 10 characters" })
+  banner      String /// @zod.url({ message: "The banner must a valid URL hosting an image" })
+  sectors     CompanySector[]
+}
+
+model CompanySector {
+  id        String   @id @default(cuid()) /// @zod.uuid()
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  company   Company  @relation(fields: [companyId], references: [id])
+  companyId String
+  sector    Sector   @relation(fields: [sectorId], references: [id])
+  sectorId  String
+}
+
+model Sector {
+  id        String          @id @default(cuid()) /// @zod.uuid()
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @default(now())
+  name      String
+  company   CompanySector[]
+}

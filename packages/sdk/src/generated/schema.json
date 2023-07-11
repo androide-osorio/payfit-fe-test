@@ -1,0 +1,424 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Api",
+    "description": "Api documentation",
+    "version": "1.0.0"
+  },
+  "components": {
+    "schemas": {
+      "Schema": {
+        "type": "object",
+        "properties": {
+          "notFoundResponseSchema": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "message"
+            ],
+            "additionalProperties": false
+          },
+          "successResponseSchema": {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "success"
+            ],
+            "additionalProperties": false
+          },
+          "GenericErrorSchema": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "message"
+            ],
+            "additionalProperties": false
+          },
+          "uuidSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false
+          },
+          "createCompanyResultSchema": {
+            "type": "object",
+            "properties": {
+              "company": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "createdAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "updatedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 2
+                  },
+                  "description": {
+                    "type": "string",
+                    "minLength": 10
+                  },
+                  "banner": {
+                    "type": "string",
+                    "format": "uri"
+                  }
+                },
+                "required": [
+                  "id",
+                  "createdAt",
+                  "updatedAt",
+                  "name",
+                  "description",
+                  "banner"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "company"
+            ],
+            "additionalProperties": false
+          },
+          "createCompanyInputSchema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "$ref": "#/components/schemas/Schema/properties/createCompanyResultSchema/properties/company/properties/name"
+              },
+              "description": {
+                "$ref": "#/components/schemas/Schema/properties/createCompanyResultSchema/properties/company/properties/description"
+              },
+              "banner": {
+                "$ref": "#/components/schemas/Schema/properties/createCompanyResultSchema/properties/company/properties/banner"
+              },
+              "sectorIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "name",
+              "description",
+              "banner",
+              "sectorIds"
+            ],
+            "additionalProperties": false
+          },
+          "findCompaniesQuerySchema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "sector": {
+                "type": "string"
+              },
+              "skip": {
+                "type": "number"
+              },
+              "take": {
+                "type": "number"
+              }
+            },
+            "additionalProperties": false
+          },
+          "findCompaniesResultSchema": {
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "number"
+              },
+              "results": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "$ref": "#/components/schemas/Schema/properties/createCompanyResultSchema/properties/company/properties/id"
+                    },
+                    "createdAt": {
+                      "$ref": "#/components/schemas/Schema/properties/createCompanyResultSchema/properties/company/properties/createdAt"
+                    },
+                    "updatedAt": {
+                      "$ref": "#/components/schemas/Schema/properties/createCompanyResultSchema/properties/company/properties/updatedAt"
+                    },
+                    "name": {
+                      "$ref": "#/components/schemas/Schema/properties/createCompanyResultSchema/properties/company/properties/name"
+                    },
+                    "description": {
+                      "$ref": "#/components/schemas/Schema/properties/createCompanyResultSchema/properties/company/properties/description"
+                    },
+                    "banner": {
+                      "$ref": "#/components/schemas/Schema/properties/createCompanyResultSchema/properties/company/properties/banner"
+                    },
+                    "sectors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "companyId": {
+                            "type": "string"
+                          },
+                          "sectorId": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "createdAt",
+                          "updatedAt",
+                          "companyId",
+                          "sectorId"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "createdAt",
+                    "updatedAt",
+                    "name",
+                    "description",
+                    "banner",
+                    "sectors"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "total",
+              "results"
+            ],
+            "additionalProperties": false
+          },
+          "findSectorsResultSchema": {
+            "type": "object",
+            "properties": {
+              "sectors": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "createdAt",
+                    "updatedAt",
+                    "name"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "sectors"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "notFoundResponseSchema",
+          "successResponseSchema",
+          "GenericErrorSchema",
+          "uuidSchema",
+          "createCompanyResultSchema",
+          "createCompanyInputSchema",
+          "findCompaniesQuerySchema",
+          "findCompaniesResultSchema",
+          "findSectorsResultSchema"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "paths": {
+    "/api/v1/companies/create": {
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Schema/properties/createCompanyInputSchema"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schema/properties/createCompanyResultSchema"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schema/properties/GenericErrorSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/companies": {
+      "get": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "name",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "sector",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "skip",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "take",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schema/properties/findCompaniesResultSchema"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schema/properties/GenericErrorSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/sectors": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schema/properties/findSectorsResultSchema"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schema/properties/GenericErrorSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/health-check/": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    }
+  }
+}

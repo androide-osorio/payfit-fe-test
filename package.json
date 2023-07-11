@@ -1,0 +1,27 @@
+{
+  "name": "template",
+  "version": "1.0.0",
+  "private": true,
+  "author": "PayFit",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PayFit/frontend-test.git"
+  },
+  "description": "",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "setup": "pnpm i && pnpm dev",
+    "test": "turbo run test"
+  },
+  "devDependencies": {
+    "turbo": "latest"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
