@@ -5,6 +5,9 @@ import { ThemeProvider as StyledThemeProvider } from 'styled-components'
  * https://styled-components.com/docs/advanced#theming
  */
 const theme = {
+  typography: {
+    base: 16,
+  },
   colors: {
     navy: {
       20: '#96A3B3',
