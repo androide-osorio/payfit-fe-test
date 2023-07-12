@@ -13,7 +13,7 @@ export function Landing() {
   return (
     <Container>
       <EmptyState
-        heading="Welcome to Payfit"
+        heading="Welcome to PayFit!"
         image="src/assets/welcome-to-payfit.svg"
       />
     </Container>

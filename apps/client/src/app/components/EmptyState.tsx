@@ -6,6 +6,11 @@ export type EmptyStateProps = {
 	image: string;
 };
 
+const EmptyStateTitle = styled.h1`
+	${({ theme }) => theme.typography.styles.h1Display};
+	color: ${({ theme }) => theme.colors.navy[200]};
+`
+
 const EmptyStateBase = styled('section')`
 	display: flex;
 	flex-direction: column;
@@ -16,7 +21,7 @@ const EmptyStateBase = styled('section')`
 export const EmptyState = ({ heading, image }: EmptyStateProps) => {
 	return (
 		<EmptyStateBase>
-			<h1>{heading}</h1>
+			<EmptyStateTitle>{heading}</EmptyStateTitle>
 			<img src={image} alt={heading} />
 		</EmptyStateBase>
 	);
