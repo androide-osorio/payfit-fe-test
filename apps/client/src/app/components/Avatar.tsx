@@ -10,6 +10,7 @@ const AvatarBase = styled('div')<AvatarProps>`
   border-radius: ${({ theme }) => theme.radii.xs};
   padding: 0.25rem;
   background-color: ${({ color = 'default', theme }) => color === 'accent' ? theme.colors.blue[100] : theme.colors.navy[100]};
+  line-height: 0;
 `;
 
 export const Avatar = ({ children, ...props }: AvatarProps) => {
