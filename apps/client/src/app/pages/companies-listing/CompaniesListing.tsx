@@ -1,16 +1,6 @@
 import styled from "styled-components";
-import { Badge, Card } from "../../components";
+import { Layout } from "../../components";
 import { CompanyGrid } from "./components/CompanyGrid";
-
-const Container = styled.section`
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  padding-block-start: 3.5rem;
-  padding-inline: 2rem;
-  background-color: ${({ theme }) => theme.colors.silver[20]};
-  height: 100vh;
-`;
 
 const H2 = styled.h2`
   ${({ theme }) => theme.typography.styles.h2}
@@ -58,12 +48,12 @@ export function CompaniesListing() {
   ];
 
   return (
-    <Container>
+    <Layout>
       <H2>Companies listing</H2>
       <ListingsContainer>
         <div>Textfield here</div>
         <CompanyGrid companies={dummyCompanies} />
       </ListingsContainer>
-    </Container>
+    </Layout>
   );
 }
