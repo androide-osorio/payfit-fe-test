@@ -12,11 +12,11 @@ export function Root() {
       <Nav>
         <NavLogo src="src/assets/payfit-logo.png" alt="Payfit Logo" />
         <NavMenu>
-          <NavItem href="/">
+          <NavItem href="/companies-listing">
             <Avatar>DD</Avatar>
             Companies listing
           </NavItem>
-          <NavItem href="/about">
+          <NavItem href="/companies-creation">
             <Avatar color="accent">DD</Avatar>
             Add new company
           </NavItem>
