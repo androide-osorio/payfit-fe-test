@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Card } from "../../components";
 
 const Container = styled.section`
   display: flex;
@@ -41,10 +42,10 @@ export function CompaniesListing() {
       <ListingsContainer>
         <div>Textfield here</div>
         <CompaniesList>
-          <li>Company 1</li>
-          <li>Company 2</li>
-          <li>Company 3</li>
-          <li>Company 4</li>
+          <Card element="li">Company 1</Card>
+          <Card element="li">Company 2</Card>
+          <Card element="li">Company 3</Card>
+          <Card element="li">Company 4</Card>
         </CompaniesList>
       </ListingsContainer>
     </Container>
