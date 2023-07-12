@@ -8,6 +8,15 @@ const theme = {
   typography: {
     base: 16,
     styles: {
+      100: css`
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          Helvetica, Arial, sans-serif;
+        font-size: 0.875rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 1.375rem;
+        letter-spacing: -0.00938rem;
+      `,
       200: css`
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
           Helvetica, Arial, sans-serif;
@@ -57,6 +66,12 @@ const theme = {
     blue: {
       20: '#EBF4FF',
       100: '#0F6FDE',
+    },
+    azure: {
+      40: '#B5ECF5',
+    },
+    purple: {
+      40: '#CFC2F9',
     },
   },
   radii: {

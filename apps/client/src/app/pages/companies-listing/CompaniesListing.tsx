@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Card } from "../../components";
+import { Badge, Card } from "../../components";
 
 const Container = styled.section`
   display: flex;
@@ -42,10 +42,22 @@ export function CompaniesListing() {
       <ListingsContainer>
         <div>Textfield here</div>
         <CompaniesList>
-          <Card element="li">Company 1</Card>
-          <Card element="li">Company 2</Card>
-          <Card element="li">Company 3</Card>
-          <Card element="li">Company 4</Card>
+          <Card element="li">
+            <Badge color="silver">Biotechnology</Badge>
+            Company 1
+          </Card>
+          <Card element="li">
+            <Badge color="blue">Environmental Technologies</Badge>
+            Company 2
+          </Card>
+          <Card element="li">
+            <Badge color="azure">Manufacturing</Badge>
+            Company 3
+          </Card>
+          <Card element="li">
+            <Badge color="purple">Information Technology</Badge>
+            Company 4
+          </Card>
         </CompaniesList>
       </ListingsContainer>
     </Container>
