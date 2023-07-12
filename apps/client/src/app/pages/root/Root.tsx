@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import { Main, Nav, GlobalStyles, NavLogo, NavItem, NavMenu } from './components'
-import { Avatar } from '../../components/Avatar/Avatar'
+import { Avatar } from '../../components'
 
 /**
  *
