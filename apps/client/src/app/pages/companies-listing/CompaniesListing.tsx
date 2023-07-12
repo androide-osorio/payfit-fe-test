@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Badge, Card } from "../../components";
+import { CompanyGrid } from "./components/CompanyGrid";
 
 const Container = styled.section`
   display: flex;
@@ -28,37 +29,40 @@ const ListingsContainer = styled.div`
   box-shadow: ${({ theme }) => theme.shadows[100]};
 `;
 
-const CompaniesList = styled.ul`
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(12.9rem, 1fr));
-  gap: 1rem;
-`;
-
 export function CompaniesListing() {
+  const dummyCompanies = [
+    {
+      id: '1',
+      name: 'Company 1',
+      description: 'Company 1 description',
+      sectors: ['Biotechnology'],
+    },
+    {
+      id: '2',
+      name: 'Company 2',
+      description: 'Company 2 description',
+      sectors: ['Environmental Technologies'],
+    },
+    {
+      id: '3',
+      name: 'Company 3',
+      description: 'Company 3 description',
+      sectors: ['Manufacturing'],
+    },
+    {
+      id: '4',
+      name: 'Company 4',
+      description: 'Company 4 description',
+      sectors: ['Information Technologies'],
+    },
+  ];
+
   return (
     <Container>
       <H2>Companies listing</H2>
       <ListingsContainer>
         <div>Textfield here</div>
-        <CompaniesList>
-          <Card element="li">
-            <Badge color="silver">Biotechnology</Badge>
-            Company 1
-          </Card>
-          <Card element="li">
-            <Badge color="blue">Environmental Technologies</Badge>
-            Company 2
-          </Card>
-          <Card element="li">
-            <Badge color="azure">Manufacturing</Badge>
-            Company 3
-          </Card>
-          <Card element="li">
-            <Badge color="purple">Information Technology</Badge>
-            Company 4
-          </Card>
-        </CompaniesList>
+        <CompanyGrid companies={dummyCompanies} />
       </ListingsContainer>
     </Container>
   );
