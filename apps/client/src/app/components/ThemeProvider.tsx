@@ -17,7 +17,7 @@ const theme = {
         line-height: 1.5625rem;
         letter-spacing: -0.01875rem;
       `,
-      'h1Display': css`
+      h1Display: css`
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
           Helvetica, Arial, sans-serif;
         font-size: 3rem;
@@ -25,6 +25,15 @@ const theme = {
         font-weight: 500;
         line-height: 145%;
         letter-spacing: 0.02688rem;
+      `,
+      h2: css`
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          Helvetica, Arial, sans-serif;
+        font-size: 1.75rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 2.4375rem;
+        letter-spacing: -0.01875rem;
       `,
     },
   },
@@ -53,7 +62,10 @@ const theme = {
   radii: {
     xs: '6px',
     sm: '8px',
-  }
+  },
+  shadows: {
+    100: '0px 1px 2px 0px rgba(0, 0, 0, 0.05)',
+  },
 };
 
 export type Theme = typeof theme;
