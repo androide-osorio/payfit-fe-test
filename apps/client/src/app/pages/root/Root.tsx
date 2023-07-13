@@ -11,7 +11,9 @@ export function Root() {
     <>
       <GlobalStyles />
       <Nav>
-        <NavLogo src="src/assets/payfit-logo.png" alt="Payfit Logo" />
+        <a href="/">
+          <NavLogo src="src/assets/payfit-logo.png" alt="Payfit Logo" />
+        </a>
         <NavMenu>
           <NavItem href="/companies-listing">
             <Avatar><Company /></Avatar>
