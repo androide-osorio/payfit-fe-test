@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ContentBlock, Layout, Text, Input } from "../../components";
+import { ContentBlock, Layout, Text, Input, Select } from "../../components";
 import { MagnifyingGlass, Unfold } from "../../components/icons";
 import { CompanyGrid } from "./components/CompanyGrid";
 
@@ -46,6 +46,15 @@ export function CompaniesListing() {
           placeholder="Use this field to search companies by name"
           leftElement={<MagnifyingGlass />}
         />
+        <Select
+          label="Company name"
+          placeholder="Enter something..."
+          leftElement={<MagnifyingGlass />}
+        >
+          <option value="1"> bla</option>
+          <option value="2"> bleh</option>
+          <option value="3"> bli</option>
+        </Select>
         <CompanyGrid companies={dummyCompanies} />
       </ContentBlock>
     </Layout>
