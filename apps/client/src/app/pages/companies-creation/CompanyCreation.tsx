@@ -1,4 +1,4 @@
-import { ContentBlock, Input, Layout, Select, Text, TextArea } from "../../components";
+import { Button, ContentBlock, Input, Layout, Select, Text, TextArea } from "../../components";
 
 export function CompaniesCreation() {
   return (
@@ -24,6 +24,7 @@ export function CompaniesCreation() {
           label="Company banner"
           placeholder="Enter something..."
         />
+        <Button type="submit">Submit</Button>
       </ContentBlock>
     </Layout>
   );
