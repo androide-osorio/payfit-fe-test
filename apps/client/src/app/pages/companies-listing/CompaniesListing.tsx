@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ContentBlock, Layout, Text, Input, Select } from "../../components";
+import { ContentBlock, Layout, Text, Input, Select, TextArea } from "../../components";
 import { MagnifyingGlass, Unfold } from "../../components/icons";
 import { CompanyGrid } from "./components/CompanyGrid";
 
@@ -55,6 +55,10 @@ export function CompaniesListing() {
           <option value="2"> bleh</option>
           <option value="3"> bli</option>
         </Select>
+        <TextArea
+          label="Free Text"
+          placeholder="Enter something..."
+        />
         <CompanyGrid companies={dummyCompanies} />
       </ContentBlock>
     </Layout>
