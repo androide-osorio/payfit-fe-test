@@ -1,15 +1,15 @@
 import React from 'react';
-import styled from 'styled-components';
-
-type Props = {
-	label: string;
-	type: 'text' | 'email' | 'password' | 'url';
-}
+import styled, { css } from 'styled-components';
 
 const InputWrapper = styled.div`
-	display: flex;
-	flex-direction: column;
-	gap: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+`;
+
+const InputLabel = styled.label`
+  ${({ theme }) => theme.typography.styles.label}
+  color: ${({ theme }) => theme.colors.navy[200]};
 `;
 
 const InputBase = styled.div<{ leftElement?: boolean; rightElement?: boolean }>`
@@ -21,19 +21,76 @@ const InputBase = styled.div<{ leftElement?: boolean; rightElement?: boolean }>`
   display: inline-flex;
   flex-direction: row;
   align-items: center;
-  /* padding: 0.625rem 0.8125rem; */
   gap: 0.5rem;
+
+	&:focus-within {
+		outline: 2px solid ${({ theme }) => theme.colors.blue[100]};
+	}
 `;
 
-const Input = () => {
-	return (
-		<InputWrapper>
-			<label htmlFor=""></label>
-			<InputBase>
-				<input type="text" />
-			</InputBase>
-		</InputWrapper>
-	);
+const InputElement = styled.span<{ isLeft?: boolean; isRight?: boolean }>`
+  color: ${({ theme }) => theme.colors.navy[20]};
+  padding-block: 0.625rem;
+  padding-inline-start: ${({ isLeft }) => (isLeft ? '0.8125rem' : '0')};
+  padding-inline-end: ${({ isRight }) => (isRight ? '0.8125rem' : '0')};
+`;
+
+const InputField = styled.input<{
+  leftElement?: boolean;
+  rightElement?: boolean;
+}>`
+  background: transparent;
+  border: none;
+  box-sizing: border-box;
+  color: ${({ theme }) => theme.colors.navy[100]};
+  padding-block: 0.625rem;
+  font-size: 1rem;
+  flex: 1;
+
+  ${({ leftElement, rightElement }) =>
+    leftElement || rightElement
+      ? css`
+          padding-inline: 0;
+        `
+      : css`
+					padding-inline: 0.8125rem;
+        `}
+
+  &::placeholder {
+    ${({ theme }) => theme.typography.styles.label}
+    color: ${({ theme }) => theme.colors.navy[20]};
+  }
+	&:focus {
+		outline: none;
+	}
+`;
+
+type Props = {
+  label: string;
+  type?: 'text' | 'email' | 'password' | 'url' | 'search';
+  placeholder?: string;
+  value?: string;
+  leftElement?: React.ReactNode;
+  rightElement?: React.ReactNode;
 };
 
-export default Input;
+export const Input = ({label, value, leftElement, rightElement, ...rest }: Props) => {
+	const hasLeftElement = Boolean(leftElement);
+	const hasRightElement = Boolean(rightElement);
+
+  return (
+    <InputWrapper>
+      <InputLabel htmlFor="">{label}</InputLabel>
+      <InputBase>
+        {hasLeftElement && <InputElement isLeft>{leftElement}</InputElement>}
+        <InputField
+          {...rest}
+          value={value}
+          leftElement={hasLeftElement}
+          rightElement={hasRightElement}
+        />
+        {hasRightElement && <InputElement isRight>{rightElement}</InputElement>}
+      </InputBase>
+    </InputWrapper>
+  );
+};
