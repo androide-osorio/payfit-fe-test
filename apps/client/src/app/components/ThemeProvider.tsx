@@ -8,7 +8,7 @@ const theme = {
   typography: {
     base: 16,
     styles: {
-      100: css`
+      label: css`
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
           Helvetica, Arial, sans-serif;
         font-size: 0.875rem;
@@ -17,7 +17,7 @@ const theme = {
         line-height: 1.375rem;
         letter-spacing: -0.00938rem;
       `,
-      200: css`
+      body: css`
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
           Helvetica, Arial, sans-serif;
         font-size: 1rem;

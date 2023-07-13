@@ -1,9 +1,9 @@
-import { Layout } from "../../components";
+import { Layout, Text } from "../../components";
 
 export function CompaniesCreation() {
   return (
     <Layout>
-      <div>CompaniesCreation</div>
+      <Text variant="h2">Add new company</Text>
     </Layout>
   )
 }

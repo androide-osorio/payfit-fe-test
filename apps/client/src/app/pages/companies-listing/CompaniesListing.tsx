@@ -1,11 +1,10 @@
 import styled from "styled-components";
-import { Layout } from "../../components";
+import { Layout, Text } from "../../components";
 import { CompanyGrid } from "./components/CompanyGrid";
 
 const H2 = styled.h2`
   ${({ theme }) => theme.typography.styles.h2}
   color: ${({ theme }) => theme.colors.navy[100]};
-  margin: 0;
 `;
 
 const ListingsContainer = styled.div`
@@ -49,7 +48,7 @@ export function CompaniesListing() {
 
   return (
     <Layout>
-      <H2>Companies listing</H2>
+      <Text variant="h2">Companies listing</Text>
       <ListingsContainer>
         <div>Textfield here</div>
         <CompanyGrid companies={dummyCompanies} />
