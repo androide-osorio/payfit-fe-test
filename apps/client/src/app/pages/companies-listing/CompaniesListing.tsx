@@ -46,19 +46,6 @@ export function CompaniesListing() {
           placeholder="Use this field to search companies by name"
           leftElement={<MagnifyingGlass />}
         />
-        <Select
-          label="Company name"
-          placeholder="Enter something..."
-          leftElement={<MagnifyingGlass />}
-        >
-          <option value="1"> bla</option>
-          <option value="2"> bleh</option>
-          <option value="3"> bli</option>
-        </Select>
-        <TextArea
-          label="Free Text"
-          placeholder="Enter something..."
-        />
         <CompanyGrid companies={dummyCompanies} />
       </ContentBlock>
     </Layout>
