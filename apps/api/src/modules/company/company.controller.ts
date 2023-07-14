@@ -18,7 +18,8 @@ export async function findCompaniesHandler(
 ) {
   try {
     const companies = await findCompanies(req.query)
-    reply.status(200).send({ companies })
+    console.log(companies);
+    reply.status(200).send({ ...companies })
   } catch (error) {
     console.error(error)
     reply.status(500).send({ message: 'Something went wrong' })
