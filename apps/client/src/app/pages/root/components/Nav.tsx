@@ -1,6 +1,12 @@
 import React, { useContext, useId } from 'react';
-import styled, { useTheme } from 'styled-components';
-import { Theme } from '../../../components';
+import styled, { css, useTheme } from 'styled-components';
+import { Avatar, Theme } from '../../../components';
+import {
+  NavLink,
+  NavLinkProps,
+  useMatch,
+  useResolvedPath,
+} from 'react-router-dom';
 
 export const Nav = styled('nav')`
   width: 300px;
@@ -34,52 +40,65 @@ const MenuBase = styled.ul`
   gap: 0.25rem;
 `;
 
-const Link = styled('a')<{ active?: boolean }>`
+const LinkContainer = styled.li<{ $isActive: boolean }>`
+  position: relative;
+  color: ${({ $isActive, theme }) =>
+    $isActive ? theme.colors.common.white : theme.colors.silver[300]};
   ${({ theme }) => theme.typography.styles[200]}
-  color: ${({ active, theme }) =>
-    active ? theme.colors.common.white : theme.colors.silver[300]};
+
+  &::before {
+    content: '';
+    position: absolute;
+
+    ${({ $isActive, theme }) => css`
+      width: 4px;
+      height: 100%;
+      left: -1rem;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      background-color: ${$isActive ? theme.colors.blue[100] : 'transparent'};
+      box-shadow: 2px 0 4px ${$isActive ? 'rgba(15, 111, 222, 0.7)' : 'transparent'};
+    `}
+  }
+`;
+
+const StyledNavLink = styled(NavLink)`
   text-decoration: none;
   cursor: pointer;
   display: flex;
   gap: 0.5rem;
   align-items: center;
   height: 2.5rem;
+
+  &:visited {
+    color: inherit;
+  }
 `;
 
-const NavMenuContext = React.createContext<NavMenuContextType>({});
-
 export const NavMenu = ({ children }: NavMenuProps) => {
-  const [activeItem, setActiveItem] = React.useState<string>();
-
-  const contextValue = {
-    activeItem,
-    setActiveItem,
-  };
-
   return (
-    <NavMenuContext.Provider value={contextValue}>
+    <>
       <MenuBase>{children}</MenuBase>
-    </NavMenuContext.Provider>
+    </>
   );
 };
 
-type NavItemProps = React.PropsWithChildren<{
-  href: string;
-}>;
+type NavItemProps = Omit<NavLinkProps, 'children'> &
+  React.PropsWithChildren<{
+    icon?: React.ReactNode;
+  }>;
 
-export const NavItem = ({ children, ...props }: NavItemProps) => {
-  const id = useId();
-  const { activeItem, setActiveItem } = useContext(NavMenuContext);
-
-  const handleClick = () => {
-    setActiveItem?.(id as string);
-  };
-
+export const NavItem = ({ children, icon, to, ...props }: NavItemProps) => {
+  const resolved = useResolvedPath(to);
+  const match = useMatch({ path: resolved.pathname, end: true });
+  const isActive = Boolean(match);
+  const avatarBgColor = isActive ? 'accent' : 'default';
   return (
-    <li>
-      <Link {...props} onClick={handleClick} active={activeItem === id}>
+    <LinkContainer $isActive={isActive}>
+      <StyledNavLink to={to} {...props}>
+        {icon && <Avatar color={avatarBgColor}>{icon}</Avatar>}
         {children}
-      </Link>
-    </li>
+      </StyledNavLink>
+    </LinkContainer>
   );
 };

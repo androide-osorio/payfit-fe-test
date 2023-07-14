@@ -12,15 +12,13 @@ export function Root() {
       <GlobalStyles />
       <Nav>
         <a href="/">
-          <NavLogo src="src/assets/payfit-logo.png" alt="Payfit Logo" />
+          <NavLogo src="src/assets/payfit-logo.svg" alt="Payfit Logo" />
         </a>
         <NavMenu>
-          <NavItem href="/companies-listing">
-            <Avatar><Company /></Avatar>
+          <NavItem to="/companies-listing" icon={<Company />}>
             Companies listing
           </NavItem>
-          <NavItem href="/companies-creation">
-            <Avatar color="accent"><AddCircle /></Avatar>
+          <NavItem to="/companies-creation" icon={<AddCircle />}>
             Add new company
           </NavItem>
         </NavMenu>
