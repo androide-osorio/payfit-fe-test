@@ -1,5 +1,6 @@
 import styled, { useTheme } from 'styled-components';
 import { type Theme } from '../themes';
+import { useComponentTheme } from '../hooks';
 
 export type BadgeProps = React.PropsWithChildren<{
   color: 'silver' | 'blue' | 'azure' | 'purple' | 'navy';
@@ -35,8 +36,7 @@ const BadgeBase = styled.span<{
 
 export const Badge = (props: BadgeProps) => {
   const { color = 'navy', children, ...rest } = props;
-  const theme = useTheme() as Theme;
-  const themeMap = badgeThemeMap(theme);
+  const themeMap = useComponentTheme(badgeThemeMap);
 
   return (
     <BadgeBase $themeMap={themeMap} $color={color} {...rest}>

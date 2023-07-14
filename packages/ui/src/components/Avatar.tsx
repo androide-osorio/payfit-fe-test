@@ -1,5 +1,6 @@
 import styled, { useTheme } from 'styled-components';
 import { type Theme } from '../themes';
+import { useComponentTheme } from '../hooks';
 
 const avatarThemeMap = (theme: Theme) => ({
   borderRadius: theme.radii.xs,
@@ -28,8 +29,7 @@ const AvatarBase = styled('div')<{
 `;
 
 export const Avatar = ({ children, color, ...props }: AvatarProps) => {
-  const theme = useTheme() as Theme;
-  const themeMap = avatarThemeMap(theme);
+  const themeMap = useComponentTheme(avatarThemeMap);
 
   return (
     <AvatarBase $themeMap={themeMap} $color={color} {...props}>
