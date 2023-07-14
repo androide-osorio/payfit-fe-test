@@ -1,6 +1,7 @@
 import React from 'react';
-import styled, { useTheme } from 'styled-components';
+import styled from 'styled-components';
 import { type Theme } from '../themes';
+import { useComponentTheme } from '../hooks';
 
 const alertThemeMap = (theme: Theme) => ({
   padding: '1rem 1.5rem',
@@ -39,13 +40,10 @@ const StyledAlert = styled.div<{
 `;
 
 export const Alert = ({ variant, children, ...rest }: AlertProps) => {
-  const theme = useTheme() as Theme;
+  const themeMap = useComponentTheme(alertThemeMap);
+
   return (
-    <StyledAlert
-      {...rest}
-      $variant={variant ?? 'primary'}
-      $themeMap={alertThemeMap(theme)}
-    >
+    <StyledAlert {...rest} $variant={variant ?? 'primary'} $themeMap={themeMap}>
       {children}
     </StyledAlert>
   );
