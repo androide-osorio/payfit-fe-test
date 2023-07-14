@@ -26,9 +26,10 @@ const ListContainer = styled.ul`
 `;
 
 const CompanyBanner = styled.figure`
-  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   margin: 0;
-  padding: 0;
+  padding: 0 1rem;
   border-radius: ${({ theme }) => theme.radii.sm};
   background-color: ${({ theme }) => theme.colors.silver[20]};
   display: flex;
@@ -42,7 +43,7 @@ const CompanyBanner = styled.figure`
   & img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
 `;
 

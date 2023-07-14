@@ -1,6 +1,6 @@
-import { Outlet } from 'react-router-dom'
+import { NavLink, Outlet } from 'react-router-dom'
 import { Main, Nav, GlobalStyles, NavLogo, NavItem, NavMenu } from './components'
-import { Avatar } from '../../components'
+import { Avatar, Divider } from '../../components'
 import { AddCircle, Company } from '../../components/icons';
 
 /**
@@ -11,9 +11,9 @@ export function Root() {
     <>
       <GlobalStyles />
       <Nav>
-        <a href="/">
+        <NavLink to="/">
           <NavLogo src="src/assets/payfit-logo.svg" alt="Payfit Logo" />
-        </a>
+        </NavLink>
         <NavMenu>
           <NavItem to="/companies-listing" icon={<Company />}>
             Companies listing
@@ -22,6 +22,7 @@ export function Root() {
             Add new company
           </NavItem>
         </NavMenu>
+        <Divider />
       </Nav>
       <Main>
         <Outlet />
