@@ -1,18 +1,39 @@
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
+import { Theme } from './ThemeProvider';
+
+const avatarThemeMap = (theme: Theme) => ({
+  borderRadius: theme.radii.xs,
+  background: {
+    default: theme.colors.navy[100],
+    accent: theme.colors.blue[100],
+  },
+});
+
+type ThemeMap = ReturnType<typeof avatarThemeMap>;
 
 type AvatarProps = React.PropsWithChildren<{
-  // Props go here
-	color?: 'default' | 'accent';
+  color?: 'default' | 'accent';
 }>;
 
-const AvatarBase = styled('div')<AvatarProps>`
+const AvatarBase = styled('div')<{
+  $themeMap: ThemeMap;
+  $color: AvatarProps['color'];
+}>`
   box-sizing: border-box;
-  border-radius: ${({ theme }) => theme.radii.xs};
   padding: 0.25rem;
-  background-color: ${({ color = 'default', theme }) => color === 'accent' ? theme.colors.blue[100] : theme.colors.navy[100]};
+  border-radius: ${({ $themeMap }) => $themeMap.borderRadius};
+  background-color: ${({ $themeMap, $color = 'default' }) =>
+    $themeMap.background[$color]};
   line-height: 0;
 `;
 
-export const Avatar = ({ children, ...props }: AvatarProps) => {
-  return <AvatarBase {...props}>{children}</AvatarBase>;
+export const Avatar = ({ children, color, ...props }: AvatarProps) => {
+  const theme = useTheme() as Theme;
+  const themeMap = avatarThemeMap(theme);
+
+  return (
+    <AvatarBase $themeMap={themeMap} $color={color} {...props}>
+      {children}
+    </AvatarBase>
+  );
 };

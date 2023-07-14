@@ -21,8 +21,6 @@ export const Card = (props: CardProps) => {
 		...rest
 	} = props;
 
-
-
 	return (
 		<StyledCard as={element} {...rest}>
 			{children}

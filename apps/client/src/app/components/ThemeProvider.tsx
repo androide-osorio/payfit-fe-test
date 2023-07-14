@@ -58,6 +58,7 @@ const theme = {
   colors: {
     common: {
       white: '#FFFFFF',
+      black: '#000000',
     },
     navy: {
       20: '#96A3B3',
