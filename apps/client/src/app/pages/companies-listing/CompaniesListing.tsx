@@ -8,37 +8,13 @@ import { getCompanies } from "../../shared/http";
 
 
 export function CompaniesListing() {
-  const { isLoading, error, data } = useQuery({
+  const { isLoading, error, data = [] } = useQuery({
     queryKey: ['companies'],
-    queryFn: () => getCompanies()
+    queryFn: async () => {
+      const { total, results } = await getCompanies();
+      return results;
+    },
   });
-
-  const dummyCompanies = [
-    {
-      id: '1',
-      name: 'Company 1',
-      description: 'Company 1 description',
-      sectors: ['Biotechnology'],
-    },
-    {
-      id: '2',
-      name: 'Company 2',
-      description: 'Company 2 description',
-      sectors: ['Environmental Technologies'],
-    },
-    {
-      id: '3',
-      name: 'Company 3',
-      description: 'Company 3 description',
-      sectors: ['Manufacturing'],
-    },
-    {
-      id: '4',
-      name: 'Company 4',
-      description: 'Company 4 description',
-      sectors: ['Information Technologies'],
-    },
-  ];
 
   return (
     <Layout>
@@ -50,7 +26,7 @@ export function CompaniesListing() {
           placeholder="Use this field to search companies by name"
           leftElement={<MagnifyingGlass />}
         />
-        <CompanyGrid companies={dummyCompanies} />
+        <CompanyGrid companies={data} />
       </ContentBlock>
     </Layout>
   );

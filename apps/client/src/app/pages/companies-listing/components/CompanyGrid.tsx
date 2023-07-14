@@ -1,11 +1,20 @@
 import styled from 'styled-components';
-import { Card, Badge } from '../../../components';
+import { Card, Badge, Text } from '../../../components';
+
+type Sector = {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  companyId: string;
+  sectorId: string;
+};
 
 type Company = {
   id: string;
   name: string;
   description: string;
-  sectors: string[];
+  banner: string;
+  sectors: Sector[];
 };
 
 type CompanyGridProps = {
@@ -21,21 +30,48 @@ const ListContainer = styled.ul`
   gap: 1rem;
 `;
 
+const CompanyBanner = styled.figure`
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-radius: ${({ theme }) => theme.radii.sm};
+  background-color: ${({ theme }) => theme.colors.silver[20]};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  aspect-ratio: 174 / 84;
+  margin-block-start: 1.25rem;
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+
 const CompanyGridItem = ({
   id,
   name,
   description,
+  banner,
   sectors,
   ...rest
 }: Company) => {
   return (
     <Card element="li" {...rest}>
       {sectors.map((sector) => (
-        <Badge key={`company-${id}__sector-${sector}`} color="silver">
-          {sector}
+        <Badge key={`company-${id}__sector-${sector.sectorId}`} color="silver">
+          {sector.sectorId}
         </Badge>
       ))}
-      <p>{description}</p>
+      <CompanyBanner>
+        <img
+          src={banner}
+          alt={name}
+        />
+      </CompanyBanner>
+      <Text variant="body">{description}</Text>
     </Card>
   );
 };
