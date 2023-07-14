@@ -1,24 +1,9 @@
 import styled from 'styled-components';
 import { Card, Badge, Text } from '../../../components';
-
-type Sector = {
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  companyId: string;
-  sectorId: string;
-};
-
-type Company = {
-  id: string;
-  name: string;
-  description: string;
-  banner: string;
-  sectors: Sector[];
-};
+import { type CompanyWithSectors } from '../../../types';
 
 type CompanyGridProps = {
-  companies: Company[];
+  companies: CompanyWithSectors[];
 };
 
 const ListContainer = styled.ul`
@@ -57,19 +42,16 @@ const CompanyGridItem = ({
   banner,
   sectors,
   ...rest
-}: Company) => {
+}: CompanyWithSectors) => {
   return (
     <Card element="li" {...rest}>
       {sectors.map((sector) => (
-        <Badge key={`company-${id}__sector-${sector.sectorId}`} color="silver">
-          {sector.sectorId}
+        <Badge key={`company-${id}__sector-${sector.id}`} color="silver">
+          {sector.name}
         </Badge>
       ))}
       <CompanyBanner>
-        <img
-          src={banner}
-          alt={name}
-        />
+        <img src={banner} alt={name} />
       </CompanyBanner>
       <Text variant="body">{description}</Text>
     </Card>
