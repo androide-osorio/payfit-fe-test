@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { ContentBlock, Input, Layout, Text } from '../../components';
 import { MagnifyingGlass } from '../../components/icons';
 import { useCompanyWithSectorsQuery } from '../../hooks/useCompanyWithSectorsQuery';
@@ -9,6 +11,15 @@ export function CompaniesListing() {
     error,
     data: companies = [],
   } = useCompanyWithSectorsQuery();
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const filteredCompanies = companies.filter((company) =>
+    company.name.toLowerCase().includes(searchQuery.toLowerCase()),
+  );
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
+  };
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -23,8 +34,9 @@ export function CompaniesListing() {
           label="Company name"
           placeholder="Use this field to search companies by name"
           leftElement={<MagnifyingGlass />}
+          onChange={handleSearch}
         />
-        <CompanyGrid companies={companies} />
+        <CompanyGrid companies={filteredCompanies} />
       </ContentBlock>
     </Layout>
   );

@@ -11,7 +11,7 @@ const ListContainer = styled.ul`
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(12.9rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(12.9rem, 1fr));
   gap: 1rem;
 `;
 

@@ -72,6 +72,7 @@ type Props = {
   value?: string;
   leftElement?: React.ReactNode;
   rightElement?: React.ReactNode;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export const Input = ({label, value, leftElement, rightElement, ...rest }: Props) => {
