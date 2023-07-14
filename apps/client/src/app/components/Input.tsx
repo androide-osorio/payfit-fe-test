@@ -68,6 +68,7 @@ const InputField = styled.input<{
 type Props = {
   label: string;
   type?: 'text' | 'email' | 'password' | 'url' | 'search';
+  name?: string;
   placeholder?: string;
   value?: string;
   leftElement?: React.ReactNode;

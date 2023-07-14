@@ -79,6 +79,7 @@ const SelectField = styled.select<{
 type Props = React.PropsWithChildren<{
   label: string;
   placeholder?: string;
+  name?: string;
   value?: string;
   leftElement?: React.ReactNode;
   rightElement?: React.ReactNode;

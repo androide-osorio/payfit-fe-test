@@ -51,6 +51,7 @@ const TextAreaField = styled.textarea`
 
 type Props = {
   label: string;
+  name?: string;
   placeholder?: string;
   value?: string;
 };
