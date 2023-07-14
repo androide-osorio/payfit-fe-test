@@ -1,18 +1,17 @@
-import { ContentBlock, Layout, Text, Input } from "../../components";
-import { MagnifyingGlass } from "../../components/icons";
-import { CompanyGrid } from "./components/CompanyGrid";
-import { useCompanyWithSectorsQuery } from "../../hooks/useCompanyWithSectorsQuery";
-
+import { ContentBlock, Input, Layout, Text } from '../../components';
+import { MagnifyingGlass } from '../../components/icons';
+import { useCompanyWithSectorsQuery } from '../../hooks/useCompanyWithSectorsQuery';
+import { CompanyGrid } from './components/CompanyGrid';
 
 export function CompaniesListing() {
   const {
     isLoading,
     error,
-    data: companies = []
+    data: companies = [],
   } = useCompanyWithSectorsQuery();
 
-  if(isLoading) {
-    return <div>Loading...</div>
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
   return (
