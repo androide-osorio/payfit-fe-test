@@ -37,12 +37,12 @@ You are tasked to complete the UI defined in these [Figma specs](https://www.fig
 
 We expect you to deliver:
 
-- [ ] A basic "Welcome to PayFit" landing page
-- [ ] A companies listing page containing grid of companies with search filtering
+- [x] A basic "Welcome to PayFit" landing page
+- [x] A companies listing page containing grid of companies with search filtering
   - Extra mile:
-    - [ ] Responsive behavior
+    - [x] Responsive behavior
     - [ ] Pagination
-- [ ] A company creation page
+- [x] A company creation page
   - Extra mile:
     - [ ] Validation handling
     - [ ] Loading state

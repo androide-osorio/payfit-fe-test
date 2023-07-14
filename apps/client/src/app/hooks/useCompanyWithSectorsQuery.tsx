@@ -10,6 +10,8 @@ import {
 
 type Params = components['schemas']['Schema']['findCompaniesQuerySchema'];
 
+const QUERY_STALE_TIME = 1000 * 60 * 60 * 24;
+
 /**
  * Extracts an array of sector IDs from an array of companies with sectors.
  * @param companies An array of companies with sectors.
@@ -56,6 +58,7 @@ export const useCompanyWithSectorsQuery = (options: Params = {}) => {
     data: companies = [],
   } = useQuery({
     queryKey: ['companies'],
+    staleTime: QUERY_STALE_TIME,
     queryFn: async () => {
       const { results } = await getCompanies(options);
       return results satisfies CompanyWithSectorsKeys[];
@@ -70,6 +73,7 @@ export const useCompanyWithSectorsQuery = (options: Params = {}) => {
     data: sectors = [],
   } = useQuery({
     queryKey: ['sectors', sectorIds],
+    staleTime: QUERY_STALE_TIME,
     queryFn: async () => {
       const { sectors } = await getSectors();
       return sectors;

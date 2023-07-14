@@ -25,6 +25,27 @@ type NavMenuContextType = {
   setActiveItem?: (item: string) => void;
 };
 
+const MenuBase = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+`;
+
+const Link = styled('a')<{ active?: boolean }>`
+  ${({ theme }) => theme.typography.styles[200]}
+  color: ${({ active, theme }) =>
+    active ? theme.colors.common.white : theme.colors.silver[300]};
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  height: 2.5rem;
+`;
+
 const NavMenuContext = React.createContext<NavMenuContextType>({});
 
 export const NavMenu = ({ children }: NavMenuProps) => {
@@ -34,15 +55,6 @@ export const NavMenu = ({ children }: NavMenuProps) => {
     activeItem,
     setActiveItem,
   };
-
-  const MenuBase = styled('ul')`
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  `
 
   return (
     <NavMenuContext.Provider value={contextValue}>
@@ -62,18 +74,6 @@ export const NavItem = ({ children, ...props }: NavItemProps) => {
   const handleClick = () => {
     setActiveItem?.(id as string);
   };
-
-  const Link = styled('a')<{ active?: boolean }>`
-    ${({ theme }) => theme.typography.styles[200]}
-    color: ${({ active, theme }) =>
-      active ? theme.colors.common.white : theme.colors.silver[300]};
-    text-decoration: none;
-    cursor: pointer;
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    height: 2.5rem;
-  `;
 
   return (
     <li>

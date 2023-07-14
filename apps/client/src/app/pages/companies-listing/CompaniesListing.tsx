@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
+import { debounce } from 'lodash';
 
 import { ContentBlock, Input, Layout, Text } from '../../components';
 import { MagnifyingGlass } from '../../components/icons';
@@ -6,37 +7,38 @@ import { useCompanyWithSectorsQuery } from '../../hooks/useCompanyWithSectorsQue
 import { CompanyGrid } from './components/CompanyGrid';
 
 export function CompaniesListing() {
+  const [searchQuery, setSearchQuery] = useState('');
   const {
     isLoading,
     error,
     data: companies = [],
   } = useCompanyWithSectorsQuery();
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const filteredCompanies = companies.filter((company) =>
-    company.name.toLowerCase().includes(searchQuery.toLowerCase()),
-  );
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log('value:', event.target.value)
     setSearchQuery(event.target.value);
   };
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  const debouncedSearch = useCallback(debounce(handleSearch, 500), []);
+
+  const filteredCompanies = useMemo(() => {
+    return companies.filter((company) =>
+    company.name.toLowerCase().includes(searchQuery.toLowerCase()))
+  }, [searchQuery, companies]);
 
   return (
     <Layout>
       <Text variant="h2">Companies listing</Text>
       <ContentBlock>
         <Input
-          type="search"
+          type="text"
           label="Company name"
+          value={searchQuery}
           placeholder="Use this field to search companies by name"
           leftElement={<MagnifyingGlass />}
           onChange={handleSearch}
         />
-        <CompanyGrid companies={filteredCompanies} />
+        <CompanyGrid isLoading={isLoading} companies={filteredCompanies} />
       </ContentBlock>
     </Layout>
   );

@@ -81,9 +81,15 @@ importers:
       '@template/sdk':
         specifier: '*'
         version: link:../../packages/sdk
+      '@types/lodash':
+        specifier: ^4.14.195
+        version: 4.14.195
       cross-env:
         specifier: 7.0.3
         version: 7.0.3
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       npm-run-all:
         specifier: ^4.1.5
         version: 4.1.5
@@ -1065,6 +1071,10 @@ packages:
 
   /@types/js-yaml@4.0.5:
     resolution: {integrity: sha512-FhpRzf927MNQdRZP0J5DLIdTXhjLYzeUTmLAu69mnVksLH9CJY3IuSeEgbKUki7GQZm0WqDkGzyxju2EZGD2wA==}
+    dev: false
+
+  /@types/lodash@4.14.195:
+    resolution: {integrity: sha512-Hwx9EUgdwf2GLarOjQp5ZH8ZmblzcbTBC2wtQWNKARBSxM9ezRIAUpeDTgoQRAFB0+8CNWXVA9+MaSOzOF3nPg==}
     dev: false
 
   /@types/ms@0.7.31:

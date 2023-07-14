@@ -1,10 +1,6 @@
 import styled from 'styled-components';
-import { Card, Badge, Text } from '../../../components';
+import { Card, Badge, Text, Skeleton } from '../../../components';
 import { type CompanyWithSectors } from '../../../types';
-
-type CompanyGridProps = {
-  companies: CompanyWithSectors[];
-};
 
 const ListContainer = styled.ul`
   list-style: none;
@@ -35,6 +31,20 @@ const CompanyBanner = styled.figure`
   }
 `;
 
+const GridItemSkeleton = () => {
+  return (
+    <Card element="li">
+      <Skeleton.Box
+        style={{ height: '1.25rem', width: '8rem', marginBottom: '1.25rem' }}
+      />
+      <Skeleton.Box style={{ height: '5.25rem', marginBottom: '1.25rem' }} />
+      <Skeleton.Text />
+      <Skeleton.Text />
+      <Skeleton.Text />
+    </Card>
+  );
+}
+
 const CompanyGridItem = ({
   id,
   name,
@@ -58,7 +68,22 @@ const CompanyGridItem = ({
   );
 };
 
-export const CompanyGrid = ({ companies }: CompanyGridProps) => {
+type CompanyGridProps = {
+  isLoading?: boolean;
+  companies: CompanyWithSectors[];
+};
+
+export const CompanyGrid = ({ companies, isLoading }: CompanyGridProps) => {
+  if (isLoading) {
+    return (
+      <ListContainer>
+        {[...Array(10)].map((_, index) => (
+          <GridItemSkeleton key={`company-skeleton-${index}`} />
+        ))}
+      </ListContainer>
+    );
+  }
+
   return (
     <ListContainer>
       {companies.map((company) => (
