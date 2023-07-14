@@ -1,6 +1,6 @@
 type TimestampedEntity<T> = T & {
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type Company = TimestampedEntity<{
