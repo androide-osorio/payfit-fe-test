@@ -38,6 +38,7 @@ const TextAreaField = styled.textarea`
   font-size: 1rem;
   flex: 1;
 	resize: vertical;
+  ${({ theme }) => theme.typography.styles.label}
 
   &:focus {
     outline: none;

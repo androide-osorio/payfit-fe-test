@@ -81,7 +81,7 @@ export function CompaniesCreation() {
           label="Company banner"
           placeholder="Enter something..."
         />
-        <Button type="submit">
+        <Button type="submit" style={{ alignSelf: 'flex-start' }}>
           {mutation.isLoading ? <Spinner size={20} /> : 'Submit'}
         </Button>
       </ContentBlock>
