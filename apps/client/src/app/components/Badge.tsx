@@ -1,8 +1,8 @@
 import styled, { useTheme } from 'styled-components';
 import { Theme } from './ThemeProvider';
 
-type BadgeProps = React.PropsWithChildren<{
-  color: 'silver' | 'blue' | 'azure' | 'purple';
+export type BadgeProps = React.PropsWithChildren<{
+  color: 'silver' | 'blue' | 'azure' | 'purple' | 'navy';
 }>;
 
 const badgeThemeMap = (theme: Theme) => ({
@@ -10,6 +10,7 @@ const badgeThemeMap = (theme: Theme) => ({
   textStyle: theme.typography.styles.label,
   borderRadius: theme.radii.sm,
   background: {
+    navy: theme.colors.navy[20],
     silver: theme.colors.silver[60],
     blue: theme.colors.blue[20],
     azure: theme.colors.azure[40],
@@ -33,7 +34,7 @@ const BadgeBase = styled.span<{
 `;
 
 export const Badge = (props: BadgeProps) => {
-  const { color, children, ...rest } = props;
+  const { color = 'navy', children, ...rest } = props;
   const theme = useTheme() as Theme;
   const themeMap = badgeThemeMap(theme);
 

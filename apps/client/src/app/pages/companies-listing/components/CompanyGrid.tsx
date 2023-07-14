@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Card, Badge, Text, Skeleton } from '../../../components';
 import { type CompanyWithSectors } from '../../../types';
+import { sectorColorMap } from '../constants';
 
 const ListContainer = styled.ul`
   --grid-layout-gap: 1rem;
@@ -76,7 +77,7 @@ const CompanyGridItem = ({
   return (
     <StyledCard element="li" {...rest}>
       {sectors.map((sector) => (
-        <Badge key={`company-${id}__sector-${sector.id}`} color="silver">
+        <Badge key={`company-${id}__sector-${sector.id}`} color={sectorColorMap[sector.name]}>
           {sector.name}
         </Badge>
       ))}
