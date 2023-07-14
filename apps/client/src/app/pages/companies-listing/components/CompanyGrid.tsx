@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { Card, Badge, Text, Skeleton } from '../../../components';
+import { Card, Badge, Text, Skeleton } from '@template/ui';
+
 import { type CompanyWithSectors } from '../../../types';
 import { sectorColorMap } from '../constants';
 

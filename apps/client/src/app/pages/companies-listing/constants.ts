@@ -1,4 +1,4 @@
-import { type BadgeProps } from '../../components';
+import { type BadgeProps } from '@template/ui';
 
 export const sectorColorMap: Record<string, BadgeProps['color']> = {
   'Biotechnology': 'silver',

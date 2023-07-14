@@ -1,10 +1,11 @@
 import { useMemo, useState } from 'react';
+import { Input, MagnifyingGlass, Text } from '@template/ui';
 
-import { ContentBlock, Input, Layout, Text } from '../../components';
-import { MagnifyingGlass } from '../../components/icons';
+import { ContentBlock, Layout } from '../../components';
 import { useCompanyWithSectorsQuery } from '../../hooks/useCompanyWithSectorsQuery';
-import { CompanyGrid } from './components/CompanyGrid';
 import { CompanyWithSectors } from '../../types';
+
+import { CompanyGrid } from './components/CompanyGrid';
 
 export function CompaniesListing() {
   const [searchQuery, setSearchQuery] = useState('');
