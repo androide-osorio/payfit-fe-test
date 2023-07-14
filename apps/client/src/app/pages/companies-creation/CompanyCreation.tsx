@@ -1,15 +1,18 @@
-import { useQuery, useMutation } from '@tanstack/react-query';
-import styled from 'styled-components';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import {
   Alert,
   Button,
-  ContentBlock,
   Input,
-  Layout,
   Select,
   Spinner,
   Text,
   TextArea,
+} from '@template/ui';
+import styled from 'styled-components';
+
+import {
+  ContentBlock,
+  Layout,
 } from '../../components';
 import { createCompany, getSectors } from '../../shared/http';
 
@@ -66,40 +69,42 @@ export function CompaniesCreation() {
               : 'Could not create company. Please check the form and try again.'}
           </Alert>
         )}
-        <ContentBlock element="form" onSubmit={handleSubmit} style={{}}>
-          <Input
-            type="text"
-            name="name"
-            label="Company name"
-            placeholder="Enter something..."
-            minlength={2}
-          />
-          <TextArea
-            label="Company description"
-            name="description"
-            placeholder="Enter something..."
-            minlength={10}
-          />
-          <Select
-            label="Company sector"
-            name="sectorIds"
-            placeholder="Enter something..."
-          >
-            {sectors.map((sector) => (
-              <option key={sector.id} value={sector.id}>
-                {sector.name}
-              </option>
-            ))}
-          </Select>
-          <Input
-            type="url"
-            name="banner"
-            label="Company banner"
-            placeholder="Enter something..."
-          />
-          <Button type="submit" style={{ alignSelf: 'flex-start' }}>
-            {mutation.isLoading ? <Spinner size={20} /> : 'Submit'}
-          </Button>
+        <ContentBlock>
+          <form onSubmit={handleSubmit}>
+            <Input
+              type="text"
+              name="name"
+              label="Company name"
+              placeholder="Enter something..."
+              minlength={2}
+            />
+            <TextArea
+              label="Company description"
+              name="description"
+              placeholder="Enter something..."
+              minlength={10}
+            />
+            <Select
+              label="Company sector"
+              name="sectorIds"
+              placeholder="Enter something..."
+            >
+              {sectors.map((sector) => (
+                <option key={sector.id} value={sector.id}>
+                  {sector.name}
+                </option>
+              ))}
+            </Select>
+            <Input
+              type="url"
+              name="banner"
+              label="Company banner"
+              placeholder="Enter something..."
+            />
+            <Button type="submit" style={{ alignSelf: 'flex-start' }}>
+              {mutation.isLoading ? <Spinner size={20} /> : 'Submit'}
+            </Button>
+          </form>
         </ContentBlock>
       </FormContainer>
     </Layout>
