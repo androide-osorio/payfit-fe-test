@@ -1,11 +1,15 @@
-import { NavLink, Outlet } from 'react-router-dom'
-import { Main, Nav, GlobalStyles, NavLogo, NavItem, NavMenu } from './components'
-import { Avatar, Divider } from '../../components'
-import { AddCircle, Company } from '../../components/icons';
+import { NavLink, Outlet } from 'react-router-dom';
+import { Divider, AddCircle, Company } from '@template/ui';
 
-/**
- *
- */
+import {
+  Main,
+  Nav,
+  GlobalStyles,
+  NavLogo,
+  NavItem,
+  NavMenu,
+} from './components';
+
 export function Root() {
   return (
     <>

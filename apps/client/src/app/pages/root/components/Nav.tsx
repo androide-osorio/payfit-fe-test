@@ -1,18 +1,18 @@
-import React, { useContext, useId } from 'react';
-import styled, { css, useTheme } from 'styled-components';
-import { Avatar, Theme } from '../../../components';
+import { Avatar } from '@template/ui';
+import React from 'react';
 import {
   NavLink,
   NavLinkProps,
   useMatch,
   useResolvedPath,
 } from 'react-router-dom';
+import styled, { css } from 'styled-components';
 
 export const Nav = styled('nav')`
   width: 300px;
-  background-color: #042040;
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
+  background-color: ${({ theme }) => theme.colors.navy[200]};
+  border-top-right-radius: ${({ theme }) => theme.radii.sm};
+  border-bottom-right-radius: ${({ theme }) => theme.radii.sm};
   color: white;
   display: flex;
   flex-direction: column;
@@ -24,12 +24,6 @@ export const NavLogo = styled('img')`
   width: max-content;
   height: 1.75rem;
 `;
-
-type NavMenuProps = React.PropsWithChildren<{}>;
-type NavMenuContextType = {
-  activeItem?: string;
-  setActiveItem?: (item: string) => void;
-};
 
 const MenuBase = styled.ul`
   list-style: none;
@@ -75,6 +69,13 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
+type NavMenuProps = React.PropsWithChildren<{}>;
+
+type NavItemProps = Omit<NavLinkProps, 'children'> &
+  React.PropsWithChildren<{
+    icon?: React.ReactNode;
+  }>;
+
 export const NavMenu = ({ children }: NavMenuProps) => {
   return (
     <>
@@ -82,11 +83,6 @@ export const NavMenu = ({ children }: NavMenuProps) => {
     </>
   );
 };
-
-type NavItemProps = Omit<NavLinkProps, 'children'> &
-  React.PropsWithChildren<{
-    icon?: React.ReactNode;
-  }>;
 
 export const NavItem = ({ children, icon, to, ...props }: NavItemProps) => {
   const resolved = useResolvedPath(to);
