@@ -3,16 +3,10 @@ import { Card, Badge, Text, Skeleton } from '../../../components';
 import { type CompanyWithSectors } from '../../../types';
 
 const ListContainer = styled.ul`
-  /**
-   * User input values.
-   */
   --grid-layout-gap: 1rem;
-  --grid-column-count: 4; /* This gets overridden by an inline style. */
-  --grid-item--min-width: 12.9rem; /* This gets overridden by an inline style. */
+  --grid-column-count: 4;
+  --grid-item--min-width: 12.9rem;
 
-  /**
-   * Calculated values.
-   */
   --gap-count: calc(var(--grid-column-count) - 1);
   --total-gap-width: calc(var(--gap-count) * var(--grid-layout-gap));
   --grid-item--max-width: calc(

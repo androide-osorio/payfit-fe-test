@@ -17,11 +17,13 @@ const variantElementMap = {
 
 const StyledElement = styled.p<TextProps>`
 	display: block;
-	${({ theme, variant = 'body' }) => theme.typography.styles[variant]}
+	${({ theme, variant = 'body' }) => theme.typography.styles[variant!]}
 `;
 
 export const Text = ({ element, variant = "body", children, ...rest }: TextProps) => {
 	const tag = element ?? variantElementMap[variant];
 
-	return <StyledElement as={tag} {...rest}>{children}</StyledElement>;
+	return <StyledElement as={tag} variant={variant} {...rest}>
+		{children}
+	</StyledElement>;
 }
