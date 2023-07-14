@@ -1,14 +1,18 @@
 import styled from "styled-components";
-import { ContentBlock, Layout, Text, Input, Select, TextArea } from "../../components";
-import { MagnifyingGlass, Unfold } from "../../components/icons";
-import { CompanyGrid } from "./components/CompanyGrid";
+import { useQuery } from '@tanstack/react-query';
 
-const H2 = styled.h2`
-  ${({ theme }) => theme.typography.styles.h2}
-  color: ${({ theme }) => theme.colors.navy[100]};
-`;
+import { ContentBlock, Layout, Text, Input } from "../../components";
+import { MagnifyingGlass } from "../../components/icons";
+import { CompanyGrid } from "./components/CompanyGrid";
+import { getCompanies } from "../../shared/http";
+
 
 export function CompaniesListing() {
+  const { isLoading, error, data } = useQuery({
+    queryKey: ['companies'],
+    queryFn: () => getCompanies()
+  });
+
   const dummyCompanies = [
     {
       id: '1',
