@@ -1,5 +1,5 @@
+import { Text } from "@template/ui";
 import styled from "styled-components";
-import { EmptyState } from "../../components";
 
 const Container = styled.div`
   display: flex;
@@ -9,13 +9,20 @@ const Container = styled.div`
   width: 100%;
 `;
 
+const EmptyState = styled('section')`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
 export function Landing() {
   return (
     <Container>
-      <EmptyState
-        heading="Welcome to PayFit!"
-        image="src/assets/welcome-to-payfit.svg"
-      />
+      <EmptyState>
+        <Text variant="h1Display">Welcome to PayFit</Text>
+        <img src="src/assets/welcome-to-payfit.svg" alt="Welcome to PayFit" />
+      </EmptyState>
     </Container>
   );
 }
