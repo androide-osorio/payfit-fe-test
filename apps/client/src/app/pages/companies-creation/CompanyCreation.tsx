@@ -23,6 +23,12 @@ const FormContainer = styled.div`
   gap: 1.5rem;
 `;
 
+const StyledForm = styled.form`
+ display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+`;
+
 type CompanyDto = Parameters<typeof createCompany>[0];
 
 export function CompaniesCreation() {
@@ -70,7 +76,7 @@ export function CompaniesCreation() {
           </Alert>
         )}
         <ContentBlock>
-          <form onSubmit={handleSubmit}>
+          <StyledForm onSubmit={handleSubmit}>
             <Input
               type="text"
               name="name"
@@ -104,7 +110,7 @@ export function CompaniesCreation() {
             <Button type="submit" style={{ alignSelf: 'flex-start' }}>
               {mutation.isLoading ? <Spinner size={20} /> : 'Submit'}
             </Button>
-          </form>
+          </StyledForm>
         </ContentBlock>
       </FormContainer>
     </Layout>

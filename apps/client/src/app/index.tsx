@@ -5,15 +5,15 @@ import {
   useQuery,
 } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { ThemeProvider, theme } from '@template/ui';
 
 import { router } from './shared/router'
-import { ThemeProvider } from './components';
 
 const queryClient = new QueryClient();
 
 export function App() {
   return (
-    <ThemeProvider>
+    <ThemeProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
         <ReactQueryDevtools initialIsOpen={false} />
