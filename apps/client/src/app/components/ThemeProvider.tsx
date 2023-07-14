@@ -82,6 +82,15 @@ const theme = {
     purple: {
       40: '#CFC2F9',
     },
+    red: {
+      200: '#D02825'
+    },
+    yellow: {
+      200: '#FFAC39'
+    },
+    green: {
+      200: '#009140'
+    }
   },
   radii: {
     xs: '6px',

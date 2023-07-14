@@ -4,7 +4,6 @@ import { Theme } from '../../../components';
 
 export const Nav = styled('nav')`
   width: 300px;
-  height: 100%;
   background-color: #042040;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
@@ -13,6 +12,7 @@ export const Nav = styled('nav')`
   flex-direction: column;
   padding: 1rem;
   gap: 1rem;
+  flex: 0 0 300px;
 `;
 export const NavLogo = styled('img')`
   width: max-content;

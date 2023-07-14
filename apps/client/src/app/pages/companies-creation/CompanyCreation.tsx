@@ -1,5 +1,7 @@
 import { useQuery, useMutation } from '@tanstack/react-query';
+import styled from 'styled-components';
 import {
+  Alert,
   Button,
   ContentBlock,
   Input,
@@ -11,14 +13,17 @@ import {
 } from '../../components';
 import { createCompany, getSectors } from '../../shared/http';
 
+const FormContainer = styled.div`
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+`;
+
 type CompanyDto = Parameters<typeof createCompany>[0];
 
 export function CompaniesCreation() {
-  const {
-    isLoading,
-    error,
-    data: sectors = [],
-  } = useQuery({
+  const { data: sectors = [] } = useQuery({
     queryKey: ['sectors'],
     queryFn: async () => {
       const { sectors } = await getSectors();
@@ -43,48 +48,60 @@ export function CompaniesCreation() {
     });
   };
 
+  const showAlert = mutation.isSuccess || mutation.isError;
+  const alertVariant = mutation.isSuccess
+    ? 'success'
+    : mutation.isError
+    ? 'danger'
+    : 'primary';
+
   return (
     <Layout>
       <Text variant="h2">Add new company</Text>
-      <ContentBlock
-        element="form"
-        onSubmit={handleSubmit}
-        style={{ width: '30rem' }}
-      >
-        <Input
-          type="text"
-          name="name"
-          label="Company name"
-          placeholder="Enter something..."
-          minlength={2}
-        />
-        <TextArea
-          label="Company description"
-          name="description"
-          placeholder="Enter something..."
-          minlength={10}
-        />
-        <Select
-          label="Company sector"
-          name="sectorIds"
-          placeholder="Enter something..."
-        >
-          {sectors.map((sector) => (
-            <option key={sector.id} value={sector.id}>
-              {sector.name}
-            </option>
-          ))}
-        </Select>
-        <Input
-          type="url"
-          name="banner"
-          label="Company banner"
-          placeholder="Enter something..."
-        />
-        <Button type="submit" style={{ alignSelf: 'flex-start' }}>
-          {mutation.isLoading ? <Spinner size={20} /> : 'Submit'}
-        </Button>
-      </ContentBlock>
+      <FormContainer>
+        {showAlert && (
+          <Alert variant={alertVariant}>
+            {mutation.isSuccess
+              ? 'Company created successfully!'
+              : 'Could not create company. Please check the form and try again.'}
+          </Alert>
+        )}
+        <ContentBlock element="form" onSubmit={handleSubmit} style={{}}>
+          <Input
+            type="text"
+            name="name"
+            label="Company name"
+            placeholder="Enter something..."
+            minlength={2}
+          />
+          <TextArea
+            label="Company description"
+            name="description"
+            placeholder="Enter something..."
+            minlength={10}
+          />
+          <Select
+            label="Company sector"
+            name="sectorIds"
+            placeholder="Enter something..."
+          >
+            {sectors.map((sector) => (
+              <option key={sector.id} value={sector.id}>
+                {sector.name}
+              </option>
+            ))}
+          </Select>
+          <Input
+            type="url"
+            name="banner"
+            label="Company banner"
+            placeholder="Enter something..."
+          />
+          <Button type="submit" style={{ alignSelf: 'flex-start' }}>
+            {mutation.isLoading ? <Spinner size={20} /> : 'Submit'}
+          </Button>
+        </ContentBlock>
+      </FormContainer>
     </Layout>
   );
 }

@@ -44,8 +44,8 @@ We expect you to deliver:
     - [ ] Pagination
 - [x] A company creation page
   - Extra mile:
-    - [ ] Validation handling
-    - [ ] Loading state
+    - [x] Validation handling
+    - [x] Loading state
 
 ### Tech stack
 
