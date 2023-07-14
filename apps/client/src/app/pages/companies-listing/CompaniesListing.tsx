@@ -1,10 +1,10 @@
-import { useCallback, useMemo, useState } from 'react';
-import { debounce } from 'lodash';
+import { useMemo, useState } from 'react';
 
 import { ContentBlock, Input, Layout, Text } from '../../components';
 import { MagnifyingGlass } from '../../components/icons';
 import { useCompanyWithSectorsQuery } from '../../hooks/useCompanyWithSectorsQuery';
 import { CompanyGrid } from './components/CompanyGrid';
+import { CompanyWithSectors } from '../../types';
 
 export function CompaniesListing() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -15,15 +15,13 @@ export function CompaniesListing() {
   } = useCompanyWithSectorsQuery();
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('value:', event.target.value)
     setSearchQuery(event.target.value);
   };
 
-  const debouncedSearch = useCallback(debounce(handleSearch, 500), []);
-
   const filteredCompanies = useMemo(() => {
-    return companies.filter((company) =>
-    company.name.toLowerCase().includes(searchQuery.toLowerCase()))
+    const matchesCompanyName = (company: CompanyWithSectors) =>
+      company.name.toLowerCase().includes(searchQuery.toLowerCase());
+    return companies.filter(matchesCompanyName)
   }, [searchQuery, companies]);
 
   return (

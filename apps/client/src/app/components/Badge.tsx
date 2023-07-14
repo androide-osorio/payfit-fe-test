@@ -12,13 +12,14 @@ const getBadgeColors = (theme: Theme) => ({
 	purple: theme.colors.purple[40],
 });
 
-const BadgeBase = styled.span`
+const BadgeBase = styled.span<BadgeProps>`
   display: inline-block;
   padding: 0.0625rem 0.5rem;
   align-items: center;
   border-radius: 0.5rem;
+  background-color: ${({ theme, color }) => getBadgeColors(theme)[color]};
   color: ${({ theme }) => theme.colors.navy[100]};
-  ${({ theme }) => theme.typography.styles[100]}
+  ${({ theme }) => theme.typography.styles.label}
 `;
 
 export const Badge = (props: BadgeProps) => {
@@ -28,11 +29,7 @@ export const Badge = (props: BadgeProps) => {
 		...rest
 	} = props;
 
-	const StyledBadge = styled(BadgeBase)`
-		background-color: ${({ theme }) => getBadgeColors(theme)[color]};
-	`;
-
 	return (
-		<StyledBadge {...rest}>{children}</StyledBadge>
+		<BadgeBase color={color} {...rest}>{children}</BadgeBase>
 	);
 };

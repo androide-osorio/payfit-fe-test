@@ -3,12 +3,32 @@ import { Card, Badge, Text, Skeleton } from '../../../components';
 import { type CompanyWithSectors } from '../../../types';
 
 const ListContainer = styled.ul`
+  /**
+   * User input values.
+   */
+  --grid-layout-gap: 1rem;
+  --grid-column-count: 4; /* This gets overridden by an inline style. */
+  --grid-item--min-width: 12.9rem; /* This gets overridden by an inline style. */
+
+  /**
+   * Calculated values.
+   */
+  --gap-count: calc(var(--grid-column-count) - 1);
+  --total-gap-width: calc(var(--gap-count) * var(--grid-layout-gap));
+  --grid-item--max-width: calc(
+    (100% - var(--total-gap-width)) / var(--grid-column-count)
+  );
+
   list-style: none;
   padding: 0;
   margin: 0;
+
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(12.9rem, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr)
+  );
+  gap: var(--grid-layout-gap);
 `;
 
 const CompanyBanner = styled.figure`
@@ -23,12 +43,17 @@ const CompanyBanner = styled.figure`
   overflow: hidden;
   aspect-ratio: 174 / 84;
   margin-block-start: 1.25rem;
+  min-height: 5.25rem;
 
   & img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
+`;
+
+const StyledCard = styled(Card)`
+  max-width: 100%;
 `;
 
 const GridItemSkeleton = () => {
@@ -54,7 +79,7 @@ const CompanyGridItem = ({
   ...rest
 }: CompanyWithSectors) => {
   return (
-    <Card element="li" {...rest}>
+    <StyledCard element="li" {...rest}>
       {sectors.map((sector) => (
         <Badge key={`company-${id}__sector-${sector.id}`} color="silver">
           {sector.name}
@@ -63,8 +88,8 @@ const CompanyGridItem = ({
       <CompanyBanner>
         <img src={banner} alt={name} />
       </CompanyBanner>
-      <Text variant="body">{description}</Text>
-    </Card>
+      <Text variant="caption">{description}</Text>
+    </StyledCard>
   );
 };
 
