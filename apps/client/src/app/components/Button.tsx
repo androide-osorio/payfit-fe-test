@@ -8,7 +8,9 @@ export const Button = styled.button`
   box-shadow: ${({ theme }) => theme.shadows[100]};
 	color: ${({ theme }) => theme.colors.common.white};
 	padding: 0.5em 0.75em;
-	display: inline-block;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 	cursor: pointer;
 	${({ theme }) => theme.typography.styles.label};
 `;

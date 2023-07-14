@@ -5,12 +5,13 @@ import {
   Input,
   Layout,
   Select,
+  Spinner,
   Text,
   TextArea,
 } from '../../components';
 import { createCompany, getSectors } from '../../shared/http';
 
-type CompanyDto = Parameters<typeof createCompany>[0]
+type CompanyDto = Parameters<typeof createCompany>[0];
 
 export function CompaniesCreation() {
   const {
@@ -80,7 +81,9 @@ export function CompaniesCreation() {
           label="Company banner"
           placeholder="Enter something..."
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit">
+          {mutation.isLoading ? <Spinner size={20} /> : 'Submit'}
+        </Button>
       </ContentBlock>
     </Layout>
   );
